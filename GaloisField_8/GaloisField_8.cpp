@@ -44,6 +44,9 @@ public:
 
 	// 在Galois Field中的乘法
 	int multiply(int a, int b) {
+		if (a == 0 || b == 0) {
+			return 0;
+		}
 		return exp_table[(log_table[a] + log_table[b]) % 7];
 	}
 
@@ -56,20 +59,52 @@ public:
 
 
 int main() {
-	int a = 4; // 範例元素 a
-	int b = 5; // 範例元素 b
+
 
 	GaloisField gf;
 
-	int sum = gf.add(a, b);
-	int difference = gf.subtract(a, b);
-	int product = gf.multiply(a, b);
-	int quotient = gf.divide(a, b);
+	//int a = 4; // 範例元素 a
+	//int b = 5; // 範例元素 b
+	//int sum = gf.add(a, b);
+	//int difference = gf.subtract(a, b);
+	//int product = gf.multiply(a, b);
+	//int quotient = gf.divide(a, b);
 
-	cout << "a + b = " << sum << endl;
-	cout << "a - b = " << difference << endl;
-	cout << "a * b = " << product << endl;
-	cout << "a / b = " << quotient << endl;
-	cout << "7 / 5 = " << gf.divide(7, 5) << endl;
+	//cout << "a + b = " << sum << endl;
+	//cout << "a - b = " << difference << endl;
+	//cout << "a * b = " << product << endl;
+	//cout << "a / b = " << quotient << endl;
+	//cout << "7 / 5 = " << gf.divide(7, 5) << endl;
+
+	// 加法表
+	cout << "加法表：" << endl;
+	cout << "+ ";
+	for (int i = 0; i < 8; ++i) {
+		cout << i << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < 8; ++i) {
+		cout << i << " ";
+		for (int j = 0; j < 8; ++j) {
+			cout << gf.add(i, j) << " ";
+		}
+		cout << endl;
+	}
+
+	// 乘法表
+	cout << "\n乘法表：" << endl;
+	cout << "* ";
+	for (int i = 0; i < 8; ++i) {
+		cout << i << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < 8; ++i) {
+		cout << i << " ";
+		for (int j = 0; j < 8; ++j) {
+			cout << gf.multiply(i, j) << " ";
+		}
+		cout << endl;
+	}
+
 	return 0;
 }
